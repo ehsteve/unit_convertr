@@ -23,7 +23,10 @@ def index():
     _input_value = float(args.get('_input_value', DEFAULT_IN_VALUE))
     _output_unit = str(args.get('_output_unit', DEFAULT_OUT_UNIT))
 
-    _output_value = u.Quantity(_input_value, _input_unit).to(_output_unit)
+    try:
+        _output_value = u.Quantity(_input_value, _input_unit).to(_output_unit)
+    except ValueError:
+        _output_value = 'Invalid equivalence entry'
 
     html = flask.render_template(
         'index.html',
