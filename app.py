@@ -1,13 +1,22 @@
 import flask
 import astropy.units as u
+
+# add imperial units to list of known units.
+from astropy.units import imperial
+imperial.enable()
+
 app = flask.Flask(__name__)
+
+DEFAULT_IN_UNIT = 'km/hr'
+DEFAULT_IN_VALUE = 100
+DEFAULT_OUT_UNIT = 'm/s'
 
 @app.route('/')
 def index():
     args = flask.request.args
-    _input_unit = str(args.get('_input_unit', 'W/m ** 2'))
-    _input_value = float(args.get('_input_value', 50.0))
-    _output_unit = str(args.get('_output_unit', 'erg/s/cm ** 2'))
+    _input_unit = str(args.get('_input_unit', DEFAULT_IN_UNIT))
+    _input_value = float(args.get('_input_value', DEFAULT_IN_VALUE))
+    _output_unit = str(args.get('_output_unit', DEFAULT_OUT_UNIT))
 
     _output_value = u.Quantity(_input_value, _input_unit).to(_output_unit)
 
