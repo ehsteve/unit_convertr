@@ -1,30 +1,25 @@
 import flask
-from bokeh.embed import components
-from bokeh.plotting import figure
-from bokeh.resources import INLINE
-from bokeh.util.string import encode_utf8
-
+import astropy.units as u
 app = flask.Flask(__name__)
 
 @app.route('/')
-def hello():
-    x = list(range(1, 100))
-    fig = figure(title="Polynomial")
-    fig.line(x, [i ** 2 for i in x], color="Red", line_width=2)
+def index():
+    args = flask.request.args
+    _input_unit = str(args.get('_input_unit', 'W/m ** 2'))
+    _input_value = float(args.get('_input_value', 50.0))
+    _output_unit = str(args.get('_output_unit', 'erg/s/cm ** 2'))
 
-    js_resources = INLINE.render_js()
-    css_resources = INLINE.render_css()
+    _output_value = u.Quantity(_input_value, _input_unit).to(_output_unit)
 
-    script, div = components(fig)
     html = flask.render_template(
         'index.html',
-        plot_script=script,
-        plot_div=div,
-        js_resources=js_resources,
-        css_resources=css_resources,
+        _input_value=_input_value,
+        _input_unit=_input_unit,
+        _output_value=_output_value,
+        _output_unit=_output_unit,
     )
-    return encode_utf8(html)
+    return html
 
 if __name__ == '__main__':
     print(__doc__)
-    app.run()
+    app.run(debug=True)

@@ -4,39 +4,23 @@
     <meta charset='utf-8' />
     <meta http-equiv='content-type' content='text/html; charset=utf-8' />
 
-    <title>Bokeh Example</title>
-
-    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.css" type="text/css" />
-    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.0.min.js"></script>
-
-    {{ js_resources|indent(4)|safe }}
-    {{ css_resources|indent(4)|safe }}
-    {{ plot_script|indent(4)|safe }}
+    <title>Astropy Unit Conversion</title>
 
   </head>
-  <body bgcolor="#8DB6CD">
-      <table border=0>
-        <tr>
-            <td valign=top width=210>
-                <p>Example</p><br>
-            <!-- A simple form for changing the graph -->
-            <form name="color_button" method='GET'>
+  <body>
+      <center>
+            <form name="input" method='GET'>
                 From:
-                <input type="text" name="_from" value="{{ _from }}"><br>
-                To:
-                <input type="text" name="to" value="{{ to }}">
+                <input type="text" name="_input_value" value="{{ _input_value }}"><br>
+                <input type="text" name="_input_unit" value="{{ _input_unit }}"><br>
+                <input type="text" name="_output_unit" value="{{ _output_unit }}"><br>
                 <br>
-                <button type="next_hour">Next Hour</button><br>
-                <button type="next_day">Next Day</button><br>
                 <button type="submit">Submit</button>
             </form>
-            <td>
-                {{ plot_div|indent(4)|safe }}
-            </td>
-        </tr>
-    </table>
+            <p>
+                {{ _output_value }}
+            </p>
+        </center>
     <br>
-    <p>Powered Flask, and Bokeh</p>
   </body>
 </html>
-
