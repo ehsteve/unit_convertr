@@ -1,13 +1,18 @@
 import flask
+from flask_bootstrap import Bootstrap
+
 import astropy.units as u
+
 
 # add imperial units to list of known units.
 from astropy.units import imperial
 imperial.enable()
 
 app = flask.Flask(__name__)
+Bootstrap(app)
 
-DEFAULT_IN_UNIT = 'km/hr'
+
+DEFAULT_IN_UNIT = 'mile/hr'
 DEFAULT_IN_VALUE = 100
 DEFAULT_OUT_UNIT = 'm/s'
 

@@ -1,29 +1,34 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv='content-type' content='text/html; charset=utf-8' />
+{% extends "bootstrap/base.html" %}
+{% block title %}Astropy Unit Conversion{% endblock %}
 
-    <title>Astropy Unit Conversion</title>
-
-  </head>
-  <body>
-      <center>
-          <p>Astropy Unit Conversion</p>
+{% block content %}
+<center>
+<div class="container">
+<div class="jumbotron">
+      <h1>Astropy Unit Conversion</h1>
+</div>
+      <div>
             <form name="input" method='GET'>
-                Value:
-                <input type="text" name="_input_value" value="{{ _input_value }}">
-                Unit:
-                <input type="text" name="_input_unit" value="{{ _input_unit }}"><br>
-                Output Unit:
-                <input type="text" name="_output_unit" value="{{ _output_unit }}"><br>
-                <br>
-                <button type="submit">Submit</button>
-            </form>
-            <p>
+                <div class="form-group">
+                    <label for="input_value">Value</label>
+                    <input type="text" name="_input_value" class="form-control" id="input_value" placeholder="{{ _input_value }}" value="{{ _input_value }}">
+                </div>
+                <div class="form-group">
+                    <label for="input_unit">Unit</label>
+                    <input type="text" name="_input_unit" class="form-control" id="input_unit" placeholder="{{ _input_unit }}" value="{{ _input_unit }}">
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="output_unit">Unit</label>
+                    <input type="text" name="_output_unit" class="form-control" id="output_unit" placeholder="{{ _output_unit }}" value="{{ _output_unit }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form><br>
+            <h2>
                 {{ _output_value }}
-            </p>
-        </center>
-    <br>
-  </body>
-</html>
+            </h2>
+            </div>
+    </div>
+</div>
+</center>
+{%- endblock %}
