@@ -1,11 +1,17 @@
 {% extends "bootstrap/base.html" %}
+{% block styles %}
+{{super()}}
+    <link rel="stylesheet" href="{{url_for('.static', filename='custom.css')}}">
+{% endblock %}
+
 {% block title %}Astropy Unit Conversion{% endblock %}
+
 
 {% block content %}
 <center>
 <div class="container">
 <div class="jumbotron">
-      <h1>Astropy Unit Conversion</h1>
+      <h1>Unit Convertr</h1>
 </div>
       <div>
             <form name="input" method='GET'>
@@ -17,18 +23,21 @@
                     <label for="input_unit">Unit</label>
                     <input type="text" name="_input_unit"  autocorrect="off" autocapitalize="off" class="form-control" id="input_unit" placeholder="{{ _input_unit }}" value="{{ _input_unit }}">
                 </div>
-            </div>
                 <div class="form-group">
                     <label for="output_unit">Output Unit</label>
                     <input type="text" name="_output_unit"  autocorrect="off" autocapitalize="off" class="form-control" id="output_unit" placeholder="{{ _output_unit }}" value="{{ _output_unit }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form><br>
-            <h2>
+            <div class="well">
+            <p>
                 {{ _output_value }}
-            </h2>
+            </p>
             </div>
     </div>
-</div>
+    <footer class="footer">
+        <p>Powered <a href="www.astropy.org/">Astropy</a></p>
+    </footer>
+</div><!-- /container -->
 </center>
 {%- endblock %}
